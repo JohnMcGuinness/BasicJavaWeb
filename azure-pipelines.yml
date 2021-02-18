@@ -10,6 +10,14 @@ pool:
   vmImage: ubuntu-20.04
 
 steps:
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud'
+    organization: 'jmcguinness5469'
+    scannerMode: 'Other'
+    extraProperties: |
+      sonar.projectKey=jmcguinness5469_BasicJavaWeb
+      sonar.projectName=BasicJavaWeb
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -17,6 +25,10 @@ steps:
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
     goals: 'clean package'
+- task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)'
