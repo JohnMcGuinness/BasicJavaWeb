@@ -16,6 +16,7 @@ import com.github.bordertech.wcomponents.WPanel;
 import com.github.bordertech.wcomponents.WText;
 import com.github.bordertech.wcomponents.WebUtilities;
 
+
 /**
  * <p>This class is the application's main component.</p>
  *
